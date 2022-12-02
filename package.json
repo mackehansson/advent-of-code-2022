@@ -7,7 +7,7 @@
         "lint": "eslint src/**/*.ts",
         "format": "eslint src/**/*.ts --fix",
         "build": "tsc",
-        "dev": "nodemon src/2022/day2/index.ts"
+        "dev": "nodemon src/2018/day2/index.ts"
     },
     "keywords": [],
     "author": "",
