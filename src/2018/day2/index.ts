@@ -29,6 +29,16 @@ function getTwosAndThrees(id: string) {
     return resultArr;
 }
 
+function compareIds(source: string, arr: string[]) {
+    const lookupArray = source.split('');
+    console.log('lookupArray:', lookupArray);
+    const stringLength = lookupArray.length;
+
+    arr.forEach((row) => {
+        console.log('row:', row);
+    });
+}
+
 function day(input: string[]) {
     function puzzle1(input: string[]) {
         const resArr = [];
@@ -56,5 +66,7 @@ function day(input: string[]) {
 
     return [puzzle1(input)];
 }
+
+compareIds('fghij', testInputPuzzle2);
 
 console.log(day(testInputPuzzle2));
