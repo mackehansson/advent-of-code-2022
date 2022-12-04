@@ -7,7 +7,7 @@
         "lint": "eslint src/**/*.ts",
         "format": "eslint src/**/*.ts --fix",
         "build": "tsc",
-        "dev": "nodemon src/2022/day3/index.ts",
+        "dev": "nodemon src/2022/day4/index.ts",
         "test": "jest --watch"
     },
     "keywords": [],
