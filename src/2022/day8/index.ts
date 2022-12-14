@@ -1,4 +1,4 @@
-const gameInput = `30373
+const testGameInput = `30373
 25512
 65332
 33549
@@ -230,20 +230,39 @@ const getScenicScore = (
     }[],
     field: number[][],
     fieldLength: number,
-    counter = 0,
 ) => {
+    const allScenicValues = [];
+
+    const getScore = (currentTree: number, sight: number[]) => {
+        const vals = [];
+        for (let i = 0; i < sight.length; i++) {
+            const tree = sight[i];
+
+            if (tree < currentTree) {
+                vals.push(1);
+            } else if (tree === currentTree) {
+                vals.push(1);
+                break;
+            } else if (tree > currentTree) {
+                vals.push(1);
+                break;
+            }
+        }
+        return vals.length;
+    };
+
     runMap.forEach((run) => {
         const currentTree = field[run.x][run.y];
         const tVal = getTreeValues(run, field, fieldLength, false);
-
-        const isTop = !tVal.top.some((i) => i >= currentTree);
-        const isRight = !tVal.right.some((i) => i >= currentTree);
-        const isBottom = !tVal.bottom.some((i) => i >= currentTree);
-        const isLeft = !tVal.left.some((i) => i >= currentTree);
-
-        if (isTop || isRight || isBottom || isLeft) counter++;
+        const topScore = getScore(currentTree, tVal.top);
+        const leftScore = getScore(currentTree, tVal.left);
+        const bottomScore = getScore(currentTree, tVal.bottom);
+        const rightScore = getScore(currentTree, tVal.right);
+        const calculated = topScore * leftScore * rightScore * bottomScore;
+        allScenicValues.push(calculated);
     });
-    return counter;
+
+    return allScenicValues;
 };
 
 /**
@@ -274,7 +293,8 @@ const puzzle2 = (input: string[]) => {
     const innerGrid = getInnerGrid(field);
     const treeCoords = getTreeCoords(innerGrid);
     const scenicPoints = getScenicScore(treeCoords, field, fieldLength);
+    return Math.max(...scenicPoints);
 };
 
-// puzzle1(gameInput);
-puzzle2(gameInput);
+console.log(puzzle1(testGameInput));
+console.log(puzzle2(testGameInput));
