@@ -101,6 +101,81 @@ Svaret på exempel:
 s###..
 
 13 position (# + s)
+
+Om nått är 2 mer så måste den andra va samma för att 
+
+              H          V
+Init        [0,0]      [0,0]    
+
+                                X+
+R 4(1)      [1,0]      [0,0]    xD: 1, yD: 0    0,0
+R 4(2)      [2,0]      [1,0]    xD: 2, yD: 0    1,0
+R 4(3)      [3,0]      [2,0]    xD: 2, yD: 0    2,0
+R 4(4)      [4,0]      [3,0]    xD: 2, yD: 0    3,0
+
+                                Y+
+U 4(1)      [4,1]      [3,0]    xD: 1, yD: 1    3,0
+U 4(2)      [4,2]      [4,1]    xD: 1, yD: 2    Diagonalt   X + 1, Y + 1
+U 4(3)      [4,3]      [4,2]    xD: 0, yD: 2    
+U 4(4)      [4,4]      [4,3]    xD: 0, yD: 2    
+
+                                X-
+L 3(1)      [3,4]      [4,3]    xD: 1, yD: 1
+L 3(2)      [2,4]      [3,4]    xD: 2, yD: 1    Diagonalt   X - 1, Y + 1
+L 3(3)      [1,4]      [2,4]    xD: 2, yD: 0
+
+                                Y-
+D 1(1)      [1,3]      [2,4]    xD: 1, yD: 1
+
+                                X+
+R 4(1)      [2,3]      [2,4]    xD: 0, yD: 1
+R 4(2)      [3,3]      [2,4]    xD: 1, yD: 1
+R 4(3)      [4,3]      [3,3]    xD: 2, yD: 1    Diagonalt
+R 4(4)      [5,3]      [4,3]    xD: 2, yD: 0
+
+                                Y-
+D 1(1)      [5,2]      [4,3]    xD: 1, yD: 1
+
+                                X-
+L 5(1)      [4,2]      [4,3]    xD: 0, yD: 1
+L 5(2)      [3,2]      [4,3]    xD: 1, yD: 1
+L 5(3)      [2,2]      [3,2]    xD: 2, yD: 1    Diagonalt
+L 5(4)      [1,2]      [2,2]    xD: 2, yD: 0
+L 5(5)      [0,2]      [1,2]    xD: 2, yD: 0
+
+                                X+
+R 2(1)      [1,2]      [1,2]    xD: 0, yD: 0
+R 2(2)      [2,2]      [1,2]    xD: 1, yD: 0
+
+
+
+
+[0,0]
+[1,0]
+[2,0]
+[3,0]
+[4,0]
+[4,1]
+[4,2]
+[4,3]
+[4,4]
+[3,4]
+[2,4]
+[1,4]
+[1,3]
+[2,3]
+[3,3]
+[4,3]
+[5,3]
+[5,2]
+[4,2]
+[3,2]
+[2,2]
+[1,2]
+[0,2]
+[1,2]
+[2,2]
+
 */
 
 type Move = [string, number];
@@ -146,13 +221,6 @@ gameMovements.forEach((move) => {
             while (i < steps) {
                 const nextPos = i + lastHeadPositionX + 1;
                 console.log('nextPos:', nextPos);
-
-                /*
-                    H = 0   
-                    H = 1
-                    H = 2
-                    H = 3
-                */
                 i++;
             }
             return;
