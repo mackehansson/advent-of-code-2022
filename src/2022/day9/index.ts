@@ -361,18 +361,15 @@ U
 
 type Move = [string, number];
 
+const day9TestInput = `R 4`;
 // const day9TestInput = `R 4
-// D 4
-// L 4
-// U 4`;
-const day9TestInput = `R 4
-U 4
-L 3
-D 1
-R 4
-D 1
-L 5
-R 2`;
+// U 4
+// L 3
+// D 1
+// R 4
+// D 1
+// L 5
+// R 2`;
 
 const movements = (input: string): Move[] =>
     input.split('\n').map((i) => {
@@ -382,6 +379,10 @@ const movements = (input: string): Move[] =>
 
 const gameMovements = movements(day9TestInput);
 console.log('gameMovements:', gameMovements);
+
+const difference = (number1: number, number2: number) => {
+    return number1 - number2;
+};
 
 const getHeadCoords = (gameMovements: Move[]): number[][] => {
     const headPositions = [[0, 0]];
@@ -460,4 +461,31 @@ const getHeadCoords = (gameMovements: Move[]): number[][] => {
     return headPositions;
 };
 
-getHeadCoords(gameMovements);
+const getTailCoords = (headMoves: number[][]): number[][] => {
+    const tailPositions = [[0, 0]];
+
+    headMoves.forEach((headMove) => {
+        console.log('headMove:', headMove);
+        const hX = headMove[0];
+        const hY = headMove[1];
+        const lastTailPosition = tailPositions.at(-1);
+        const lastTailX = lastTailPosition[0];
+        const lastTailY = lastTailPosition[1];
+
+        const xDiff = difference(hX, lastTailX);
+        const yDiff = difference(hY, lastTailY);
+
+        // Samma värde som innan
+        if (xDiff <= 1 && yDiff <= 1) {
+            tailPositions.push(lastTailPosition);
+        } else if (xDiff === 2) {
+        }
+
+        // Nytt värd
+    });
+
+    console.log('tailPositions:', tailPositions);
+    return tailPositions;
+};
+
+getTailCoords(getHeadCoords(gameMovements));
